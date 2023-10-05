@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import { productsRouter } from './routes/productsRouter.js';
 import { userRouter } from './routes/userRouter.js';
+import { emailRouter } from './routes/emailRouter.js';
 
 const app = express();
 
@@ -20,6 +21,9 @@ mongoose.connect(MONGO_DB)
   .then(() => {
     console.log("Connected to Mongo")
   })
+  .catch(err => {
+    console.log(err.message)
+  })
 
 app.get("/", (req, res) => {
 
@@ -29,6 +33,7 @@ app.get("/", (req, res) => {
   })
 })
 
+app.use("/api/mail", emailRouter)
 app.use("/api/users", userRouter)
 app.use("/api/products", productsRouter)
 
