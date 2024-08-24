@@ -22,16 +22,16 @@ emailRouter.post("/sendEmail/:email", async (req, res) => {
   let result = await transport.sendMail({
     from: "ByLuan Shop <msm@gmail.com>",
     to: email,
-    subject: "Catalogo",
+    subject: "Bienvenido a ByLuan",
     html: `
           <div>
-            <h3>Gracias por suscribirte ahi te envio el catalogo</h3>
-            <img src='/public/img/user.png'>
+            <h3>Recibiras las mejores ofertas y cupones</h3>
+            <img src="cid:offer"/>
           </div>`,
     attachments: [{
-      filename: "catalogo.rar",
-      path: __dirname + "/public/catalogo.rar",
-      cid: "perrito.png"
+      filename: "offer.jpg",
+      path: __dirname + "/public/img/offer.jpg",
+      cid: "offer"
     }]
   })
 

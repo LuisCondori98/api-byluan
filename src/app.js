@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { productsRouter } from './routes/productsRouter.js';
 import { userRouter } from './routes/userRouter.js';
 import { emailRouter } from './routes/emailRouter.js';
+import { cuponRouter } from './routes/cuponRouter.js';
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended:true }))
 app.use(express.static("public"))
 
-const MONGO_DB = "mongodb+srv://luisbarker11:IvkCQGSAr89lPcCh@cluster.p21e02a.mongodb.net/ByLuan?retryWrites=true&w=majority"
+const MONGO_DB = "mongodb+srv://luisbarker11:IvkCQGSAr89lPcCh@cluster.p21e02a.mongodb.net/Steelecht?retryWrites=true&w=majority"
 
 mongoose.connect(MONGO_DB)
   .then(() => {
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/mail", emailRouter)
+app.use("/api/cupon", cuponRouter)
 app.use("/api/users", userRouter)
 app.use("/api/products", productsRouter)
 
