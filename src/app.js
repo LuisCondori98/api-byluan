@@ -1,14 +1,19 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import dotenv from "dotenv"
 import { productsRouter } from './routes/productsRouter.js';
 import { userRouter } from './routes/userRouter.js';
 import { emailRouter } from './routes/emailRouter.js';
 import { cuponRouter } from './routes/cuponRouter.js';
 
+dotenv.config()
+
 const app = express();
 
-const PORT = 8080
+const PORT = process.env.PORT || 3000
+
+console.log(process.env.PORT)
 
 app.use(cors())
 
@@ -16,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended:true }))
 app.use(express.static("public"))
 
-const MONGO_DB = "mongodb+srv://luisbarker11:IvkCQGSAr89lPcCh@cluster.p21e02a.mongodb.net/Steelecht?retryWrites=true&w=majority"
+const MONGO_DB = process.env.MONGO_URL
 
 mongoose.connect(MONGO_DB)
   .then(() => {
